@@ -1,18 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Paginator = ({
     pages,
     handleClick,
     currentPage,
-    minPageNumberLimit,
-    maxPageNumberLimit,
-    pageNumberLimit,
-    setminPageNumberLimit,
-    setcurrentPage,
-    setmaxPageNumberLimit,
-    setpageNumberLimit,
-
+    setcurrentPage
 }) => {
+
+    const [pageNumberLimit] = useState(5);
+    const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
+    const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
 
     const renderPageNumbers = pages.map((number) => {
         if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
@@ -63,36 +60,38 @@ const Paginator = ({
 
 
     return (
-        <ul className="page-numbers">
-            <li>
-                <button
-                    onClick={handlePrevbtn}
-                    disabled={currentPage === pages[0] ? true : false}
-                >
-                    Prev
-                </button>
-            </li>
-            {pageDecrementBtn}
-            {renderPageNumbers}
+        <div className="paginator-container">
+            <ul className="page-numbers">
+                <li>
+                    <button
+                        onClick={handlePrevbtn}
+                        disabled={currentPage === pages[0] ? true : false}
+                    >
+                        Prev
+                    </button>
+                </li>
+                {pageDecrementBtn}
+                {renderPageNumbers}
 
-            {/* {pages.map(p => (
+                {/* {pages.map(p => (
                 <li key={p} id={p} onClick={handleClick}
                     className={currentPage === p ? "active" : null}>
                     {p}
                 </li>
             ))} */}
-            {/* {renderPageNumbers} */}
-            {pageIncrementBtn}
+                {/* {renderPageNumbers} */}
+                {pageIncrementBtn}
 
-            <li>
-                <button
-                    onClick={handleNextbtn}
-                    disabled={currentPage === pages[pages.length - 1] ? true : false}
-                >
-                    Next
-                </button>
-            </li>
-        </ul>
+                <li>
+                    <button
+                        onClick={handleNextbtn}
+                        disabled={currentPage === pages[pages.length - 1] ? true : false}
+                    >
+                        Next
+                    </button>
+                </li>
+            </ul>
+        </div>
     )
 
     // return (

@@ -2,14 +2,10 @@ import { useState } from 'react'
 
 const usePagination = (array, perPage = 5) => {
 
+
+
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(perPage); //para despues poder agregar selector de cuantas paginas
-
-    const [pageNumberLimit, setpageNumberLimit] = useState(5);
-    const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
-    const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
-
-
 
     if (!array) return {
         currentItems: []
@@ -29,17 +25,11 @@ const usePagination = (array, perPage = 5) => {
     }
 
     return {
-        currentItems,
         currentPage,
+        setCurrentPage,
         handleClick,
         pages,
-        pageNumberLimit,
-        maxPageNumberLimit,
-        minPageNumberLimit,
-        setCurrentPage,
-        setpageNumberLimit,
-        setmaxPageNumberLimit,
-        setminPageNumberLimit,
+        currentItems
     }
 
 }

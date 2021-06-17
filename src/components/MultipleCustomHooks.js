@@ -1,16 +1,20 @@
 import React from 'react'
 import useFetch from '../hooks/useFetch'
-import usePagination from '../hooks/usePagination';
-import List from './List';
-import Paginator from './Paginator';
+import usePagination from '../hooks/usePagination'
+import List from './List'
+import Paginator from './Paginator'
 
+import WindowTracker from './WindowTracker'
+import MouseTracker from './MouseTracker'
+import CounterClicks from './CounterClicks'
+import Todos from './Todos'
+
+import AxiosCaller from './AxiosCaller'
 
 const MultipleCustomHooks = () => {
-
     const posts = useFetch('https://jsonplaceholder.typicode.com/posts')
     //const characters = useFetch('https://rickandmortyapi.com/api/character')
     console.log(posts)
-
 
     const {
         pages,
@@ -44,6 +48,18 @@ const MultipleCustomHooks = () => {
                         </>
                 }
             </div>
+
+
+            <WindowTracker />
+
+            <MouseTracker />
+
+            <CounterClicks />
+
+            <Todos />
+
+            <AxiosCaller />
+
         </>
     )
 

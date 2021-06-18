@@ -5,6 +5,7 @@
 }
 
 .card {
+  cursor            : pointer;
   width             : 200px;
   border            : 1px solid rgba(199, 186, 186, 0.75);
   padding           : 15px;
@@ -23,6 +24,7 @@
   display        : flex;
   justify-content: center;
   width          : 100%;
+  cursor         : pointer;
 }
 
 .paginator {

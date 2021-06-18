@@ -1,13 +1,14 @@
 import React from 'react'
 
-const Card = ({ item }) => {
+const Card = ({ item, handleClick }) => {
 
     return (
-        <div className="card">
+        <div className="card" onClick={() => handleClick(item)}>
 
             <div>{item.id}</div>
             {/* <img src={item.image} alt={item.name} /> */}
-            <h3>{item.title} </h3>
+            <h3>{item.name} </h3>
+            <img src={item.image} alt={item.name} />
             <p>{item.body}</p>
         </div>
     )

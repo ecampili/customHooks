@@ -4,37 +4,35 @@ import { useState, useEffect } from 'react'
 const useAxios = (url) => {
     const [ state, setState ] = useState({ data: null, error: null, loading: true })
 
-    useEffect(() => {
-        const axiosResource = async (url) => {
-            try {
-                const getCall = await axios.get(url)
+    const axiosCall = async (url) => {
+        try {
+            const call = await axios.get(url)
 
-                if (!getCall) {
-                    throw new Error ({
-                        err: true,
-                        status: getCall.status,
-                        statusText: getCall.statusText ? getCall.statusText : 'An error ocurred.'
-                    })
-                }
-
-                const resData = getCall
-
-                setState({
-                    data: resData.data,
-                    error: null,
-                    loading: false
-                })
-            } catch (err) {
-                // console.log(err)
-                setState({
-                    // error: err,
-                    error: err.message,
-                    loading: true
+            if (!call.data) {
+                throw new Error ({
+                    err: true,
+                    status: call.status,
+                    statusText: call.statusText ? call.statusText : 'An error ocurred.'
                 })
             }
-        }
 
-        axiosResource(url)
+            setState({
+                data: call.data,
+                error: null,
+                loading: false
+            })
+        } catch (err) {
+            // console.log(err)
+            setState({
+                // error: err,
+                error: err.message,
+                loading: true
+            })
+        }
+    }
+
+    useEffect(() => {
+        axiosCall(url)
     }, [url])
 
     return state

@@ -12,6 +12,10 @@ const AxiosCaller = () => {
     const state = useAxios(url)
     //////////////////////////////////////////////////////////////
 
+    if (state.loading) {
+        return <h4>Loading...</h4>
+    }
+
     return (
         <>
             {/* Hook axios call validation */}

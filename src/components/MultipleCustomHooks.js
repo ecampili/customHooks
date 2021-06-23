@@ -1,8 +1,9 @@
 import React from 'react'
 import useFetch from '../hooks/useFetch'
-import usePagination from '../hooks/usePagination'
-import List from './List'
-import Paginator from './Paginator'
+import usePagination from '../hooks/usePagination';
+import List from './List';
+
+import Paginator from './Paginator';
 
 import WindowTracker from './WindowTracker'
 import MouseTracker from './MouseTracker'
@@ -12,29 +13,31 @@ import Todos from './Todos'
 import AxiosCaller from './AxiosCaller'
 
 const MultipleCustomHooks = () => {
-    const posts = useFetch('https://jsonplaceholder.typicode.com/posts')
-    //const characters = useFetch('https://rickandmortyapi.com/api/character')
-    console.log(posts)
+    //const posts = useFetch('https://jsonplaceholder.typicode.com/posts')
+    const characters = useFetch('https://rickandmortyapi.com/api/character')
+    // if (characters) { console.log(characters.data?.results) }
 
     const {
         pages,
         currentItems,
         currentPage,
         setCurrentPage,
-        handleClick } = usePagination(posts.data, 7)
+        handleClick } = usePagination(characters.data?.results, 5)
 
     return (
         <>
+
+
             <div>
                 <h1>Custom Hooks</h1>
             </div>
             <div className="container">
-                {(posts.loading)
+                {(characters.loading)
                     ?
                     (<h2>loading....</h2>)
                     :
-                    (posts.error) ?
-                        (<h2>{posts.error}</h2>)
+                    (characters.error) ?
+                        (<h2>{characters.error}</h2>)
                         :
                         <>
                             <Paginator

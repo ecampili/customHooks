@@ -12,6 +12,10 @@ import Todos from './Todos'
 
 import AxiosCaller from './AxiosCaller'
 
+import { SearchBar } from './SearchBar'
+import Search from './Search'
+import SearchBarCountries from './SearchBarCountries'
+
 const MultipleCustomHooks = () => {
     //const posts = useFetch('https://jsonplaceholder.typicode.com/posts')
     const characters = useFetch('https://rickandmortyapi.com/api/character')
@@ -62,6 +66,12 @@ const MultipleCustomHooks = () => {
             <Todos />
 
             <AxiosCaller />
+
+            <SearchBar />
+
+            <Search />
+
+            <SearchBarCountries />
 
         </>
     )

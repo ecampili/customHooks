@@ -1,43 +1,56 @@
-import axios from 'axios'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
-const useAxios = (url) => {
+export const useAxios = (url) => {
     const [ state, setState ] = useState({ data: null, error: null, loading: true })
 
-    useEffect(() => {
-        const axiosResource = async (url) => {
-            try {
-                const getCall = await axios.get(url)
+    // const httpReqMethod = options
+    // let call = ''
 
-                if (!getCall) {
-                    throw new Error ({
-                        err: true,
-                        status: getCall.status,
-                        statusText: getCall.statusText ? getCall.statusText : 'An error ocurred.'
-                    })
-                }
+    // switch(httpReqMethod) {
+    //     case 'post':
+    //         call = axios.post(url)
+        
+    //     case 'put':
+    //         call = axios.put(url)
+        
+    //     case 'delete':
+    //         call = axios.delete(url)
+        
+    //     default:
+    //         call = axios.get(url)
+    // }
 
-                const resData = getCall
+    const axiosCall = async (url) => {
+        try {
+            const res = await axios.get(url)
 
-                setState({
-                    data: resData.data,
-                    error: null,
-                    loading: false
-                })
-            } catch (err) {
-                // console.log(err)
-                setState({
-                    // error: err,
-                    error: err.message,
-                    loading: true
+            if (!res.data) {
+                throw new Error ({
+                    err: true,
+                    status: res.status,
+                    statusText: res.statusText ? res.statusText : 'An error ocurred.'
                 })
             }
-        }
 
-        axiosResource(url)
+            setState({
+                data: res.data,
+                error: null,
+                loading: false
+            })
+        } catch (err) {
+            // console.log(err)
+            setState({
+                // error: err,
+                error: err.message,
+                loading: false
+            })
+        }
+    }
+
+    useEffect(() => {
+        axiosCall(url)
     }, [url])
 
     return state
 }
-
-export default useAxios

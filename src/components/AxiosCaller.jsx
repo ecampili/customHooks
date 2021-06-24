@@ -1,7 +1,7 @@
 import React from 'react'
 
 //////////////// Hook axios call import ////////////////
-import useAxios from '../hooks/useAxios'
+import { useAxios } from '../hooks/useAxios'
 ////////////////////////////////////////////////////////
 
 const AxiosCaller = () => {
